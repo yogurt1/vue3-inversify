@@ -1,18 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <p>Counter is {{ appModel.counter }}</p>
+  <button @click="appModel.increment">Increment</button>
+  <button @click="appModel.decrement">Decrement</button>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import HelloWorld from './components/HelloWorld.vue';
+import { AppModel } from './App.model'
+import { Inject } from './decorators';
 
 @Options({
   components: {
     HelloWorld,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Inject(AppModel) appModel!: AppModel
+}
 </script>
 
 <style>
